@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $db = new MyDB();
+    $db = MyDB::getInstance();
     $db->connect();
 
     // Подготовка запроса для получения данных пользователя по имени

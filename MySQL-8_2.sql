@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: MySQL-8.2
--- Время создания: Окт 13 2024 г., 20:46
+-- Время создания: Окт 27 2024 г., 21:18
 -- Версия сервера: 8.2.0
 -- Версия PHP: 8.3.6
 
@@ -34,16 +34,20 @@ CREATE TABLE `messages` (
   `sender_id` int NOT NULL,
   `message` text NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `receiver_id` int NOT NULL
+  `receiver_id` int NOT NULL,
+  `topic` text NOT NULL,
+  `is_read` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Дамп данных таблицы `messages`
 --
 
-INSERT INTO `messages` (`id`, `sender_id`, `message`, `created_at`, `receiver_id`) VALUES
-(1, 9, 'Ну че как , как дела ', '2024-10-13 17:27:43', 10),
-(2, 9, 'куку', '2024-10-13 17:33:17', 10);
+INSERT INTO `messages` (`id`, `sender_id`, `message`, `created_at`, `receiver_id`, `topic`, `is_read`) VALUES
+(2, 9, 'куку', '2024-10-13 17:33:17', 10, '', 1),
+(5, 9, 'mmf', '2024-10-15 15:53:39', 9, '', 1),
+(7, 9, 'rfmnrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr', '2024-10-16 18:16:16', 10, 'nmfffffffffffffffffffffffffffffffffmfmnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn', 1),
+(8, 10, 'wkrlmrkfffffrmkffffffffffffffffffffffffffmkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk', '2024-10-18 17:37:47', 9, 'frokrfkoofkor', 1);
 
 -- --------------------------------------------------------
 
@@ -125,7 +129,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT для таблицы `pages`

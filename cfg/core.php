@@ -1,13 +1,12 @@
 <?php 
 
-// MYSQL
 class MyDB 
 {
-    var $dblogin = "root"; //ЛОГИН 
+    var $dblogin = "root"; // ЛОГИН 
     var $dbpass = ""; // ПАРОЛЬ 
     var $db = "mysite"; // НАЗВАНИЕ БАЗЫ ДЛЯ САЙТА
     var $dbhost = "localhost";
-
+	private static $instance = null;
     var $link;
     var $query;
     var $err;
@@ -15,6 +14,18 @@ class MyDB
     var $data;
     var $fetch;
 
+	private function __construct() {
+        $this->connect();
+    }
+
+    // Метод для получения единственного экземпляра класса
+    public static function getInstance() {
+        if (self::$instance === null) {
+            self::$instance = new MyDB();
+        }
+        return self::$instance;
+    }
+	
     function connect() {
         $this->link = new mysqli('127.127.126.50', $this->dblogin, $this->dbpass, $this->db);
         
@@ -27,11 +38,12 @@ class MyDB
 
     function close() {
 		if ($this->link) { // Проверка, открыто ли соединение
-        $this->link->close();
-        $this->link = null; // Устанавливаем значение в null после закрытия
+            $this->link->close();
+            $this->link = null; // Устанавливаем значение в null после закрытия
 		}
 	}
-	
+
+    // Метод для выполнения обычных запросов
     function run($query) {
         $this->query = $query;
         $this->result = $this->link->query($this->query);
@@ -39,6 +51,11 @@ class MyDB
         if ($this->link->error) {
             $this->err = $this->link->error;
         }
+    }
+
+    // Метод для подготовки запросов
+    function prepare($query) {
+        return $this->link->prepare($query);
     }
 
     function row() {

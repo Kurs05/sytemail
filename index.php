@@ -12,7 +12,7 @@ define("INDEX", ""); // УСТАНОВКА КОНСТАНТЫ ГЛАВНОГО �
 require_once($_SERVER['DOCUMENT_ROOT'] . "/cfg/core.php"); 
 
 // ПОДКЛЮЧЕНИЕ К БД
-$db = new MyDB();
+$db = MyDB::getInstance();
 $db->connect();
 
 // ГЛАВНЫЙ КОНТРОЛЛЕР

@@ -8,6 +8,8 @@ body {
     height: 100vh;
     margin: 0;
 	padding: 0;
+	font-weight : normal;
+	text-transform : lowercase;
 }
 
 .login-container {
@@ -155,18 +157,84 @@ input[type="submit"]:hover {
 /* Стили основного контента */
 .content {
     margin-left: 50px; /* отступ для учета ширины боковой панели */
-    padding: 240px;
+    padding: 45px;
     height: 100vh; /* Высота на всю страницу */
     background-color: #f4f4f4;
 }
-
+.message-conteiner {
+	display: flex; /* Элементы в строку */
+    justify-content: space-between; /* Разделение между элементами */
+    align-items: flex-start; 
+	width : 100%;
+	
+	
+}
+.message-item {
+          
+    white-space:nowrap;
+	overflow:hidden;/* Скрываем переполнение */
+    text-overflow: ellipsis;
+	min-width: 70px;/* Добавляем многоточие для длинного текста */
+      /* Запрещаем перенос текста на новую строку */
+/* Ограничиваем ширину элементов */
+}
 /* Стили для сообщений */
 .message {
+	
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 15px;
-    margin-bottom: 15px;
+    height: 65px;
+    box-sizing: border-box;
+	width: 750px;
+	display: flex;           /* Используем flexbox */
+    flex-direction: row;         /* Каждый элемент является блоком */
+    overflow: hidden;        /* Скрываем переполнение */
+    text-overflow: ellipsis; /* Добавляем многоточие для длинного текста */
+    white-space: nowrap; 
+	gap: 10px;
+	text-decoration: none;
+    color: black;
+    transition: background-color 0.3s;
+	
+}
+.message-checkbox {
+    margin-right: 10px; /* Отступ для чекбокса */
+}
+.message:hover {
+    background-color: #f0f0f0; /* Изменение фона при наведении */
+}
+
+#messageActions {
+    margin-bottom: 10px;
+}
+
+}
+#topic_message, #message_message {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 200px;
+}
+#topic_sender {
+	background-color: white;
+    border: 1px solid #ddd;
+	padding: 5px;
+    margin-bottom: 5px;
+	white-space: nowrap;
+	height: 30px;
+	overflow-x: auto;
+}
+#message {
+	background-color: white;
+    border: 1px solid #ddd;
+	padding: 5px;
+    margin-bottom: 5px;
+	height: 50px;
+	overflow-x: auto;
+
+	
 }
 /* Стили для модального окна */
 .modal {
@@ -182,7 +250,7 @@ input[type="submit"]:hover {
 
 .modal-content {
     background-color: #fff;
-    margin: 15% auto; /* Центрируем окно по вертикали */
+    margin: 10% auto; /* Центрируем окно по вертикали */
     padding: 20px;
     border: 1px solid #888;
     width: 40%; /* Ширина окна */
@@ -213,7 +281,37 @@ input[type="submit"]:hover {
 }
 
 #messageForm textarea {
-    resize: vertical;
-    min-height: 100px;
-    max-height: 300px;
+    resize: none;
+   
 }
+#notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: none;
+    font-weight: bold;
+    z-index: 1000;
+}
+
+#notification.success {
+    background-color: #4caf50;
+    color: white;
+}
+
+#notification.error {
+    background-color: #f44336;
+    color: white;
+}
+
+#notification.warning {
+    background-color: #ff9800;
+    color: white;
+}
+
+.message.read {
+    background-color: #ff9800; /* Переопределение на серый цвет */
+    color: #777 ; /* Опционально можно добавить изменение цвета текста */
+}
+

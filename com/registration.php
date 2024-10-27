@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'] . '@edu'; // Добавляем @edu к введенному имени
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    $db = new MyDB();
+    $db = MyDB::getInstance();
     $db->connect();
 
     // Проверяем, существует ли уже имя пользователя
